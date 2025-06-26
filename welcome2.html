@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #ececec;
+        }
+        nav {
+            background-color: #007bff;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        nav .username {
+            font-size: 1em;
+        }
+        nav button {
+            background-color: #ff6666;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        nav button:hover {
+            background-color: #e60000;
+        }
+        .welcome-message {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="username" id="username-display"></div>
+        <button id="logout-button">Logout</button>
+    </nav>
+    <div class="welcome-message">Welcome to the Website!</div>
+<div style="padding-left: 2rem;padding-right: 2rem;">
+
+        <form action="welcome2.html">
+            <label for="fruits">Choose a flower:</label>
+            <select id="fruits" name="fruits">
+                <option value="marigold">Apple</option>
+                <option value="lotus">Banana</option>
+                <option value="sunflower">Cherry</option>
+                <option value="date">Date</option>
+                <option value="grape">Grape</option>
+            </select>
+            <button type="submit" style="margin-top: 20px; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1em;">Submit</button>
+        </form>
+
+      
+    </div>
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+           (function(n,t,a,e,co){var i="aptrinsic";n[i]=n[i]||function(){
+      (n[i].q=n[i].q||[]).push(arguments)},n[i].p=e;n[i].c=co;
+    var r=t.createElement("script");r.async=!0,r.src=a+"?a="+e;
+    var c=t.getElementsByTagName("script")[0];c.parentNode.insertBefore(r,c)
+  })(window,document,"https://web-sdk.aptrinsic.com/api/aptrinsic.js","AP-YR0EQEB1VEKS-2");
+
+           //passing user and account objects:
+aptrinsic("identify",
+  {
+  //User Fields
+    "id": loggedInUser.id, // Required for logged in app users
+    "email": loggedInUser.email,
+    "firstName": loggedInUser.name,
+    "lastName": "Smith",
+    "signUpDate": 1522697426479, //unix time in ms
+    "plan" : "gold", //Custom attributes - please create those custom attributes in Aptrinsic via Account Settings to be tracked.
+    "price" : 95.5,
+    "userHash": "" // optional transient for HMAC identification
+  },
+  {
+  //Account Fields
+    "id":"Adobe", //Required
+    "name":"International Business Machine",
+    "Program": "Platinum" // flat custom attributes
+ });
+           
+
+            if (!loggedInUser) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            document.getElementById('username-display').innerText = `Hello, ${loggedInUser.name}!`;
+
+            document.getElementById('logout-button').addEventListener('click', function() {
+                localStorage.removeItem('loggedInUser');
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+</html>
