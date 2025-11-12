@@ -65,24 +65,26 @@
         <button id="dropdownButton" style="width: 100%; background-color: #4CAF50; color: white; padding: 10px 16px; font-size: 16px; border: none; cursor: pointer;">
             Select an option
         </button>
-        <div id="dropdownContent" style="display: none; position: absolute; background-color: #f9f9f9; width: 100%; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;">
-            <div style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 1')">Option 1</div>
-            <div style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 2')">Option 2</div>
-            <div style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 3')">Option 3</div>
-        </div>
-    </div>
+          <button 
+            id="dropdownButton" 
+            style="width: 100%; background-color: #4CAF50; color: white; padding: 10px 16px; font-size: 16px; border: none; cursor: pointer; text-align: left;">
+            Select an option
+        </button>
+        <ul 
+            id="dropdownContent" 
+            style="display: none; position: absolute; background-color: #f9f9f9; width: 100%; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); list-style-type: none; margin: 0; padding: 0; z-index: 1;">
+            <li style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 1')">Option 1</li>
+            <li style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 2')">Option 2</li>
+            <li style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 3')">Option 3</li>
+        </ul>
+    </span>
 
     <script>
-        // JavaScript to toggle dropdown visibility and select option
         const dropdownButton = document.getElementById('dropdownButton');
         const dropdownContent = document.getElementById('dropdownContent');
 
         dropdownButton.addEventListener('click', function() {
-            if (dropdownContent.style.display === "none" || dropdownContent.style.display === "") {
-                dropdownContent.style.display = "block";
-            } else {
-                dropdownContent.style.display = "none";
-            }
+            dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
         });
 
         function selectOption(option) {
@@ -90,7 +92,6 @@
             dropdownContent.style.display = "none";
         }
 
-        // Close the dropdown if clicked outside
         window.onclick = function(event) {
             if (!event.target.matches('#dropdownButton')) {
                 dropdownContent.style.display = "none";
