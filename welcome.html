@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
@@ -38,60 +40,6 @@
             margin-top: 50px;
             font-size: 2em;
         }
-        .card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            max-width: 400px;
-            margin: auto;
-        }
-        .preference {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 10px 0;
-        }
-        .toggle {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-        }
-        .toggle input {
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            cursor: pointer;
-        }
-        .slider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 24px;
-        }
-        .slider:before {
-            position: absolute;
-            content: '';
-            height: 20px;
-            width: 20px;
-            left: 2px;
-            bottom: 2px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: #007bff;
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
     </style>
 </head>
 <body>
@@ -100,112 +48,229 @@
         <button id="logout-button">Logout</button>
     </nav>
     <div class="welcome-message">Welcome to the Website!</div>
-    <div class="card">
-        <h2 style="margin-bottom: 20px;">User Preferences Attributes</h2>
-        <div class="preference">
-            <span>Guided Tours</span>
-            <label class="toggle">
-                <input type="checkbox" id="guidedTours" onchange="updatePreferences()">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="preference">
-            <span>Onboarding Bot</span>
-            <label class="toggle">
-                <input type="checkbox" id="onboardingBot" onchange="updatePreferences()">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="preference">
-            <span>Product Updates</span>
-            <label class="toggle">
-                <input type="checkbox" id="productUpdates" onchange="updatePreferences()">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="preference">
-            <span>Surveys</span>
-            <label class="toggle">
-                <input type="checkbox" id="surveys" onchange="updatePreferences()">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="preference">
-            <span>Track Email Analytics</span>
-            <label class="toggle">
-                <input type="checkbox" id="trackEmailAnalytics" onchange="updatePreferences()">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="preference">
-            <span>Track Usage</span>
-            <label class="toggle">
-                <input type="checkbox" id="trackUsage" onchange="updatePreferences()">
-                <span class="slider"></span>
-            </label>
-        </div>
+<div style="padding-left: 2rem;padding-right: 2rem;">
+
+        <form action="welcome.html">
+            <label for="fruits">Choose a fruit:</label>
+            <select id="fruits" name="fruits">
+                <option value="apple">Apple</option>
+                <option value="banana">Banana</option>
+                <option value="cherry">Cherry</option>
+                <option value="date">Date</option>
+                <option value="grape">Grape</option>
+            </select>
+            <button type="submit" style="margin-top: 20px; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1em;">Submit</button>
+        </form>
+ 
+          <button 
+            id="dropdownButton" 
+            style="width: 30%; background-color: #4CAF50; color: white; padding: 10px 16px; font-size: 16px; border: none; cursor: pointer; text-align: left;">
+            Select an option
+        </button>
+        <ul 
+            id="dropdownContent" 
+            style="display: none; position: absolute; background-color: #f9f9f9; width: 30%; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); list-style-type: none; margin: 0; padding: 0; z-index: 1;">
+            <li style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 1')">Option 1</li>
+            <li style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 2')">Option 2</li>
+            <li style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 3')">Option 3</li>
+        </ul>
+    </span>
+
+    <script>
+        const dropdownButton = document.getElementById('dropdownButton');
+        const dropdownContent = document.getElementById('dropdownContent');
+
+        dropdownButton.addEventListener('click', function() {
+            dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+        });
+
+        function selectOption(option) {
+            dropdownButton.textContent = option;
+            dropdownContent.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('#dropdownButton')) {
+                dropdownContent.style.display = "none";
+            }
+        }
+    </script>
+
+      
     </div>
+   
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+           (function(n,t,a,e,co){var i="aptrinsic";n[i]=n[i]||function(){
+      (n[i].q=n[i].q||[]).push(arguments)},n[i].p=e;n[i].c=co;
+    var r=t.createElement("script");r.async=!0,r.src=a+"?a="+e;
+    var c=t.getElementsByTagName("script")[0];c.parentNode.insertBefore(r,c)
+  })(window,document,"https://web-sdk.aptrinsic.com/api/aptrinsic.js","AP-YR0EQEB1VEKS-2");
+
+           //passing user and account objects:
+aptrinsic("identify",
+  {
+  //User Fields
+    "id": loggedInUser.id, // Required for logged in app users
+    "email": loggedInUser.email,
+    "firstName": loggedInUser.name,
+    "lastName": "Smith",
+    "signUpDate": 1522697426479, //unix time in ms
+    "plan" : "gold", //Custom attributes - please create those custom attributes in Aptrinsic via Account Settings to be tracked.
+    "price" : 95.5,
+    "userHash": "" // optional transient for HMAC identification
+  },
+  {
+  //Account Fields
+    "id":"Adobe", //Required
+    "name":"International Business Machine",
+    "Program": "Platinum" // flat custom attributes
+ });
+           
+
             if (!loggedInUser) {
                 window.location.href = 'index.html';
                 return;
             }
 
-            const apiKey = "ef669dfd-836a-47b5-90f3-b72d749c7c66";
-            const url = `https://api.aptrinsic.com/v2/user/preferences/${loggedInUser.id}`;
-
-            const initialPreferences = {
-                guidedTours: false,
-                onboardingBot: false,
-                productUpdates: false,
-                surveys: false,
-                trackEmailAnalytics: false,
-                trackUsage: false
-            };
-
             document.getElementById('username-display').innerText = `Hello, ${loggedInUser.name}!`;
+
             document.getElementById('logout-button').addEventListener('click', function() {
                 localStorage.removeItem('loggedInUser');
                 window.location.href = 'index.html';
             });
-
-            for (const key in initialPreferences) {
-                document.getElementById(key).checked = initialPreferences[key];
-            }
-
-            window.updatePreferences = async function() {
-                const values = {
-                    guidedTours: document.getElementById('guidedTours').checked,
-                    onboardingBot: document.getElementById('onboardingBot').checked,
-                    productUpdates: document.getElementById('productUpdates').checked,
-                    surveys: document.getElementById('surveys').checked,
-                    trackEmailAnalytics: document.getElementById('trackEmailAnalytics').checked,
-                    trackUsage: document.getElementById('trackUsage').checked
-                };
-
-                try {
-                    const response = await fetch(url, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${apiKey}`
-                        },
-                        body: JSON.stringify(values),
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-
-                    const data = await response.json();
-                    console.log('Success:', data);
-                } catch (error) {
-                    console.error('Error:', error);
-                }
-            }
         });
     </script>
+
+   <div style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); max-width: 400px; margin: auto;">
+    <h2 style="margin-bottom: 20px;">User Preferences Attributes</h2>
+
+    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
+        <span>Guided Tours</span>
+        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
+            <input type="checkbox" id="guidedTours" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
+            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
+            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
+        </label>
+    </div>
+    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
+        <span>Onboarding Bot</span>
+        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
+            <input type="checkbox" id="onboardingBot" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
+            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
+            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
+        </label>
+    </div>
+    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
+        <span>Product Updates</span>
+        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
+            <input type="checkbox" id="productUpdates" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
+            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
+            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
+        </label>
+    </div>
+    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
+        <span>Surveys</span>
+        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
+            <input type="checkbox" id="surveys" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
+            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
+            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
+        </label>
+    </div>
+    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
+        <span>Track Email Analytics</span>
+        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
+            <input type="checkbox" id="trackEmailAnalytics" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
+            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
+            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
+        </label>
+    </div>
+    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
+        <span>Track Usage</span>
+        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
+            <input type="checkbox" id="trackUsage" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
+            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
+            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
+        </label>
+    </div>
+</div>
+
+<script>
+    const apiKey = "ef669dfd-836a-47b5-90f3-b72d749c7c66";
+    const url = "https://api.aptrinsic.com/v2/user/preferences/prince1234";
+
+    // Initialize all preferences to false
+    const initialPreferences = {
+        guidedTours: false,
+        onboardingBot: false,
+        productUpdates: false,
+        surveys: false,
+        trackEmailAnalytics: false,
+        trackUsage: false
+    };
+
+    // Set initial states
+    document.getElementById('guidedTours').checked = initialPreferences.guidedTours;
+    document.getElementById('onboardingBot').checked = initialPreferences.onboardingBot;
+    document.getElementById('productUpdates').checked = initialPreferences.productUpdates;
+    document.getElementById('surveys').checked = initialPreferences.surveys;
+    document.getElementById('trackEmailAnalytics').checked = initialPreferences.trackEmailAnalytics;
+    document.getElementById('trackUsage').checked = initialPreferences.trackUsage;
+
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const sliderBackground = this.parentNode.querySelector('span');
+            const sliderCircle = sliderBackground.nextElementSibling;
+            sliderBackground.style.backgroundColor = this.checked ? '#007bff' : '#ccc';
+            sliderCircle.style.transform = this.checked ? 'translateX(26px)' : 'translateX(0)';
+        });
+    });
+
+    function getToggleValues() {
+        return {
+            guidedTours: document.getElementById('guidedTours').checked,
+            onboardingBot: document.getElementById('onboardingBot').checked,
+            productUpdates: document.getElementById('productUpdates').checked,
+            surveys: document.getElementById('surveys').checked,
+            trackEmailAnalytics: document.getElementById('trackEmailAnalytics').checked,
+            trackUsage: document.getElementById('trackUsage').checked
+        };
+    }
+
+    async function updatePreferences() {
+        const values = getToggleValues();
+
+        const body = {
+            guidedTours: values.guidedTours,
+            onboardingBot: values.onboardingBot,
+            productUpdates: values.productUpdates,
+            surveys: values.surveys,
+            trackEmailAnalytics: values.trackEmailAnalytics,
+            trackUsage: values.trackUsage
+        };
+
+        try {
+            const response = await fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify(body),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+
+            const data = await response.json();
+            console.log('Success:', data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+</script>
+
 </body>
 </html>
