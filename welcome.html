@@ -100,6 +100,53 @@
         <button id="logout-button">Logout</button>
     </nav>
     <div class="welcome-message">Welcome to the Website!</div>
+    <div style="padding-left: 2rem;padding-right: 2rem;">
+
+        <form action="welcome.html">
+            <label for="fruits">Choose a fruit:</label>
+            <select id="fruits" name="fruits">
+                <option value="apple">Apple</option>
+                <option value="banana">Banana</option>
+                <option value="cherry">Cherry</option>
+                <option value="date">Date</option>
+                <option value="grape">Grape</option>
+            </select>
+            <button type="submit" style="margin-top: 20px; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1em;">Submit</button>
+        </form>
+ 
+          <button 
+            id="dropdownButton" 
+            style="width: 30%; background-color: #4CAF50; color: white; padding: 10px 16px; font-size: 16px; border: none; cursor: pointer; text-align: left;">
+            Select an option
+        </button>
+        <ul 
+            id="dropdownContent" 
+            style="display: none; position: absolute; background-color: #f9f9f9; width: 30%; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); list-style-type: none; margin: 0; padding: 0; z-index: 1;">
+            <li style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 1')">Option 1</li>
+            <li style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 2')">Option 2</li>
+            <li style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 3')">Option 3</li>
+        </ul>
+    </span>
+
+    <script>
+        const dropdownButton = document.getElementById('dropdownButton');
+        const dropdownContent = document.getElementById('dropdownContent');
+
+        dropdownButton.addEventListener('click', function() {
+            dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+        });
+
+        function selectOption(option) {
+            dropdownButton.textContent = option;
+            dropdownContent.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('#dropdownButton')) {
+                dropdownContent.style.display = "none";
+            }
+        }
+    </script>
     <div class="card">
         <h2 style="margin-bottom: 20px;">User Preferences Attributes</h2>
         <div class="preference">
