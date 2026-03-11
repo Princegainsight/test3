@@ -141,8 +141,64 @@ aptrinsic("identify",
                 window.location.href = 'index.html';
             });
         });
-         const apiKey = "ef669dfd-836a-47b5-90f3-b72d749c7c66";
-    const url = "https://api.aptrinsic.com/v2/user/preferences/${loggedInUser.id}";
+    </script>
+
+   <div style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); max-width: 400px; margin: auto;">
+    <h2 style="margin-bottom: 20px;">User Preferences Attributes</h2>
+
+    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
+        <span>Guided Tours</span>
+        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
+            <input type="checkbox" id="guidedTours" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
+            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
+            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
+        </label>
+    </div>
+    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
+        <span>Onboarding Bot</span>
+        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
+            <input type="checkbox" id="onboardingBot" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
+            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
+            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
+        </label>
+    </div>
+    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
+        <span>Product Updates</span>
+        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
+            <input type="checkbox" id="productUpdates" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
+            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
+            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
+        </label>
+    </div>
+    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
+        <span>Surveys</span>
+        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
+            <input type="checkbox" id="surveys" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
+            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
+            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
+        </label>
+    </div>
+    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
+        <span>Track Email Analytics</span>
+        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
+            <input type="checkbox" id="trackEmailAnalytics" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
+            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
+            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
+        </label>
+    </div>
+    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
+        <span>Track Usage</span>
+        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
+            <input type="checkbox" id="trackUsage" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
+            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
+            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
+        </label>
+    </div>
+</div>
+
+<script>
+    const apiKey = "ef669dfd-836a-47b5-90f3-b72d749c7c66";
+    const url = "https://api.aptrinsic.com/v2/user/preferences/prince1234";
 
     // Initialize all preferences to false
     const initialPreferences = {
@@ -214,63 +270,6 @@ aptrinsic("identify",
             console.error('Error:', error);
         }
     }
-    </script>
-
-   <div style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); max-width: 400px; margin: auto;">
-    <h2 style="margin-bottom: 20px;">User Preferences Attributes</h2>
-
-    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
-        <span>Guided Tours</span>
-        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
-            <input type="checkbox" id="guidedTours" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
-            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
-            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
-        </label>
-    </div>
-    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
-        <span>Onboarding Bot</span>
-        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
-            <input type="checkbox" id="onboardingBot" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
-            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
-            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
-        </label>
-    </div>
-    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
-        <span>Product Updates</span>
-        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
-            <input type="checkbox" id="productUpdates" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
-            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
-            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
-        </label>
-    </div>
-    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
-        <span>Surveys</span>
-        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
-            <input type="checkbox" id="surveys" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
-            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
-            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
-        </label>
-    </div>
-    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
-        <span>Track Email Analytics</span>
-        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
-            <input type="checkbox" id="trackEmailAnalytics" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
-            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
-            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
-        </label>
-    </div>
-    <div class="preference" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
-        <span>Track Usage</span>
-        <label style="position: relative; display: inline-block; width: 50px; height: 24px;">
-            <input type="checkbox" id="trackUsage" onchange="updatePreferences()" style="opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer;">
-            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
-            <span style="position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%;"></span>
-        </label>
-    </div>
-</div>
-
-<script>
-   
 </script>
 
 </body>
