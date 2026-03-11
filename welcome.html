@@ -3,15 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Preferences Attributes</title>
+    <title>Welcome</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-            margin: 20px;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #ececec;
         }
-        h2 {
-            margin-bottom: 20px;
+        nav {
+            background-color: #007bff;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        nav .username {
+            font-size: 1em;
+        }
+        nav button {
+            background-color: #ff6666;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        nav button:hover {
+            background-color: #e60000;
+        }
+        .welcome-message {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 2em;
+        }
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 400px;
+            margin: 20px auto;
         }
         .preference {
             display: flex;
@@ -27,12 +60,13 @@
         }
         .toggle input {
             opacity: 0;
-            width: 0;
-            height: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            cursor: pointer;
         }
         .slider {
             position: absolute;
-            cursor: pointer;
             top: 0;
             left: 0;
             right: 0;
@@ -43,7 +77,7 @@
         }
         .slider:before {
             position: absolute;
-            content: "";
+            content: '';
             height: 20px;
             width: 20px;
             left: 2px;
@@ -61,51 +95,193 @@
     </style>
 </head>
 <body>
+    <nav>
+        <div class="username" id="username-display"></div>
+        <button id="logout-button">Logout</button>
+    </nav>
+    <div class="welcome-message">Welcome to the Website!</div>
 
-<h2>User Preferences Attributes</h2>
+    <div style="padding-left: 2rem;padding-right: 2rem;">
+        <form action="welcome.html">
+            <label for="fruits">Choose a fruit:</label>
+            <select id="fruits" name="fruits">
+                <option value="apple">Apple</option>
+                <option value="banana">Banana</option>
+                <option value="cherry">Cherry</option>
+                <option value="date">Date</option>
+                <option value="grape">Grape</option>
+            </select>
+            <button type="submit" style="margin-top: 20px; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1em;">Submit</button>
+        </form>
 
-<div class="preference">
-    <span>Guided Tours</span>
-    <label class="toggle">
-        <input type="checkbox" checked>
-        <span class="slider"></span>
-    </label>
-</div>
-<div class="preference">
-    <span>Onboarding Bot</span>
-    <label class="toggle">
-        <input type="checkbox">
-        <span class="slider"></span>
-    </label>
-</div>
-<div class="preference">
-    <span>Product Updates</span>
-    <label class="toggle">
-        <input type="checkbox">
-        <span class="slider"></span>
-    </label>
-</div>
-<div class="preference">
-    <span>Surveys</span>
-    <label class="toggle">
-        <input type="checkbox">
-        <span class="slider"></span>
-    </label>
-</div>
-<div class="preference">
-    <span>Track Email Analytics</span>
-    <label class="toggle">
-        <input type="checkbox">
-        <span class="slider"></span>
-    </label>
-</div>
-<div class="preference">
-    <span>Track Usage</span>
-    <label class="toggle">
-        <input type="checkbox">
-        <span class="slider"></span>
-    </label>
-</div>
+        <button id="dropdownButton" style="width: 30%; background-color: #4CAF50; color: white; padding: 10px 16px; font-size: 16px; border: none; cursor: pointer; text-align: left;">
+            Select an option
+        </button>
+        <ul id="dropdownContent" style="display: none; position: absolute; background-color: #f9f9f9; width: 30%; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); list-style-type: none; margin: 0; padding: 0; z-index: 1;">
+            <li style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 1')">Option 1</li>
+            <li style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 2')">Option 2</li>
+            <li style="padding: 12px 16px; cursor: pointer;" onclick="selectOption('Option 3')">Option 3</li>
+        </ul>
+    </div>
 
+    <script>
+        const dropdownButton = document.getElementById('dropdownButton');
+        const dropdownContent = document.getElementById('dropdownContent');
+        dropdownButton.addEventListener('click', function() {
+            dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+        });
+        function selectOption(option) {
+            dropdownButton.textContent = option;
+            dropdownContent.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('#dropdownButton')) {
+                dropdownContent.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+            if (!loggedInUser) {
+                window.location.href = 'index.html';
+                return;
+            }
+            document.getElementById('username-display').innerText = `Hello, ${loggedInUser.name}!`;
+            document.getElementById('logout-button').addEventListener('click', function() {
+                localStorage.removeItem('loggedInUser');
+                window.location.href = 'index.html';
+            });
+
+            // Initialize the Aptrinsic SDK
+            (function(n, t, a, e, co) {
+                var i = "aptrinsic"; n[i] = n[i] || function() { (n[i].q = n[i].q || []).push(arguments) }, n[i].p = e; n[i].c = co;
+                var r = t.createElement("script"); r.async = !0; r.src = a + "?a=" + e;
+                var c = t.getElementsByTagName("script")[0]; c.parentNode.insertBefore(r, c)
+            })(window, document, "https://web-sdk.aptrinsic.com/api/aptrinsic.js", "AP-YR0EQEB1VEKS-2");
+
+            // Identify the user
+            aptrinsic("identify", {
+                "id": loggedInUser.id,
+                "email": loggedInUser.email,
+                "firstName": loggedInUser.name,
+                "lastName": "Smith",
+                "signUpDate": 1522697426479,
+                "plan": "gold",
+                "price": 95.5,
+                "userHash": ""
+            }, {
+                "id": "Adobe",
+                "name": "International Business Machine",
+                "Program": "Platinum"
+            });
+
+            // Preferences handling
+            const email = loggedInUser.email;
+            const apiKey = "ef669dfd-836a-47b5-90f3-b72d";
+            const url = `https://api.aptrinsic.com/v2/user/preferences/${email}`;
+
+            const initialPreferences = {
+                guidedTours: false,
+                onboardingBot: false,
+                productUpdates: false,
+                surveys: false,
+                trackEmailAnalytics: false,
+                trackUsage: false
+            };
+
+            // Set initial states
+            for (const key in initialPreferences) {
+                document.getElementById(key).checked = initialPreferences[key];
+            }
+
+            async function updatePreferences() {
+                const values = {
+                    guidedTours: document.getElementById('guidedTours').checked,
+                    onboardingBot: document.getElementById('onboardingBot').checked,
+                    productUpdates: document.getElementById('productUpdates').checked,
+                    surveys: document.getElementById('surveys').checked,
+                    trackEmailAnalytics: document.getElementById('trackEmailAnalytics').checked,
+                    trackUsage: document.getElementById('trackUsage').checked
+                };
+
+                const body = JSON.stringify(values);
+
+                try {
+                    const response = await fetch(url, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${apiKey}`
+                        },
+                        body: body,
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+
+                    const data = await response.json();
+                    console.log('Success:', data);
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+
+            // Toggle event listeners
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    updatePreferences();
+                });
+            });
+        });
+    </script>
+
+    <div class="card">
+        <h2 style="margin-bottom: 20px;">User Preferences Attributes</h2>
+        <div class="preference">
+            <span>Guided Tours</span>
+            <label class="toggle">
+                <input type="checkbox" id="guidedTours">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="preference">
+            <span>Onboarding Bot</span>
+            <label class="toggle">
+                <input type="checkbox" id="onboardingBot">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="preference">
+            <span>Product Updates</span>
+            <label class="toggle">
+                <input type="checkbox" id="productUpdates">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="preference">
+            <span>Surveys</span>
+            <label class="toggle">
+                <input type="checkbox" id="surveys">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="preference">
+            <span>Track Email Analytics</span>
+            <label class="toggle">
+                <input type="checkbox" id="trackEmailAnalytics">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="preference">
+            <span>Track Usage</span>
+            <label class="toggle">
+                <input type="checkbox" id="trackUsage">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
 </body>
 </html>
