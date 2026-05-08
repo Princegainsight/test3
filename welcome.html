@@ -143,6 +143,116 @@ aptrinsic("identify",
         });
     </script>
 
+   <!-- Create User Button -->
+<button
+  type="button"
+  onclick="document.getElementById('modal').style.display='flex'"
+  style="display:inline-flex;align-items:center;gap:8px;background:#2563eb;color:white;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:500;cursor:pointer;margin-bottom:1rem;">
+  + Create User
+</button>
+
+<!-- Users List -->
+<div style="padding:1.5rem 0;">
+  <p style="font-size:13px;color:#6b7280;margin-bottom:8px;">Users</p>
+  <div id="users-container" style="display:flex;flex-direction:column;gap:12px;">
+
+    <button
+      type="button"
+      data-headlessui-state=""
+      data-testid="user-name-button"
+      style="position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;border-radius:0.5rem;border:1px solid transparent;padding:0;text-align:left;font-weight:800;font-size:1.25rem;color:#1a1a1a;background:transparent;cursor:pointer;text-decoration:none;">
+      <span aria-hidden="true" style="position:absolute;top:50%;left:50%;width:max(100%,2.75rem);height:max(100%,2.75rem);transform:translate(-50%,-50%);"></span>
+      <span>Danny Wheeland</span>
+    </button>
+
+    <button
+      type="button"
+      data-headlessui-state=""
+      data-testid="user-name-button"
+      style="position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;border-radius:0.5rem;border:1px solid transparent;padding:0;text-align:left;font-weight:800;font-size:1.25rem;color:#1a1a1a;background:transparent;cursor:pointer;text-decoration:none;">
+      <span aria-hidden="true" style="position:absolute;top:50%;left:50%;width:max(100%,2.75rem);height:max(100%,2.75rem);transform:translate(-50%,-50%);"></span>
+      <span>Ashley Apple</span>
+    </button>
+
+    <button
+      type="button"
+      data-headlessui-state=""
+      data-testid="user-name-button"
+      style="position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;border-radius:0.5rem;border:1px solid transparent;padding:0;text-align:left;font-weight:800;font-size:1.25rem;color:#1a1a1a;background:transparent;cursor:pointer;text-decoration:none;">
+      <span aria-hidden="true" style="position:absolute;top:50%;left:50%;width:max(100%,2.75rem);height:max(100%,2.75rem);transform:translate(-50%,-50%);"></span>
+      <span>Gloria Goulash</span>
+    </button>
+
+  </div>
+</div>
+
+<!-- Modal Backdrop -->
+<div id="modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:50;align-items:center;justify-content:center;">
+
+  <!-- Modal Box -->
+  <div style="background:#ffffff;border-radius:12px;border:0.5px solid #e5e7eb;padding:1.5rem;width:320px;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
+    <h3 style="margin:0 0 1rem;font-size:16px;font-weight:500;color:#111827;">Create new user</h3>
+
+    <input
+      type="text"
+      id="user-name-input"
+      placeholder="Enter user name"
+      style="width:100%;box-sizing:border-box;padding:8px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:14px;margin-bottom:1rem;outline:none;" />
+
+    <div style="display:flex;justify-content:flex-end;gap:8px;">
+      <button
+        type="button"
+        onclick="closeModal()"
+        style="background:transparent;border:0.5px solid #d1d5db;border-radius:8px;padding:6px 16px;font-size:14px;cursor:pointer;color:#374151;">
+        Cancel
+      </button>
+      <button
+        type="button"
+        onclick="createUser()"
+        style="background:#2563eb;color:white;border:none;border-radius:8px;padding:6px 16px;font-size:14px;font-weight:500;cursor:pointer;">
+        OK
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+    document.getElementById('user-name-input').value = '';
+  }
+
+  function createUser() {
+    const input = document.getElementById('user-name-input');
+    const name = input.value.trim();
+    if (!name) return;
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.setAttribute('data-headlessui-state', '');
+    btn.setAttribute('data-testid', 'user-name-button');
+    btn.style.cssText = 'position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;border-radius:0.5rem;border:1px solid transparent;padding:0;text-align:left;font-weight:800;font-size:1.25rem;color:#1a1a1a;background:transparent;cursor:pointer;text-decoration:none;';
+
+    const touchSpan = document.createElement('span');
+    touchSpan.setAttribute('aria-hidden', 'true');
+    touchSpan.style.cssText = 'position:absolute;top:50%;left:50%;width:max(100%,2.75rem);height:max(100%,2.75rem);transform:translate(-50%,-50%);';
+
+    const nameSpan = document.createElement('span');
+    nameSpan.textContent = name;
+
+    btn.appendChild(touchSpan);
+    btn.appendChild(nameSpan);
+
+    document.getElementById('users-container').appendChild(btn);
+    closeModal();
+  }
+
+  document.getElementById('user-name-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') createUser();
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+
    <div style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); max-width: 400px; margin: auto;">
     <h2 style="margin-bottom: 20px;">User Preferences Attributes</h2>
 
